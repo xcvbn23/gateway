@@ -1,0 +1,24 @@
+[project]
+name = "gateway"
+version = "0.0.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "prometheus-client==0.23.1",
+    "pydantic==2.12.5",
+    "python-dotenv==1.2.1",
+    "python-logging-loki==0.3.1",
+    "python-systemd>=0.0.9",
+]
+
+[dependency-groups]
+dev = [
+    "psutil==7.2.1",
+    "pyfakefs==6.0.0",
+    "pytest==9.0.2",
+    "ruff==0.14.11",
+]
+
+[tool.setuptools]
+py-modules = ["cli", "custom_logging", "gateway", "settings", "tcp_proxy_settings", "utils"]

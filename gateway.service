@@ -1,0 +1,23 @@
+[Unit]
+Description=Gateway
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/gateway
+ExecStart=/opt/gateway/.venv/bin/python3 /opt/gateway/cli.py --listen-address 0.0.0.0 --listen-port 80 --target-address alpine-headless-1.tail37b43f.ts.net --target-port 80 --user gateway --group gateway
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Optional: Environment variables for configuration
+Environment=PYTHONUNBUFFERED=1
+# Environment=LISTEN_ADDRESS=0.0.0.0
+# Environment=LISTEN_PORT=8080
+# Environment=TARGET_HOST=your-target-host
+# Environment=TARGET_PORT=80
+
+[Install]
+WantedBy=multi-user.target
